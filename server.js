@@ -16,8 +16,14 @@ folders.forEach(function(folder) {
         modules.push(require(modulePath));
     });
 });
+
+app.use(function(req, res, next) {
+  //console.log(req);
+  next();
+});
+
 modules.forEach(function(module) {
-    app.use("/hi", module);
+    app.use("/api", module);
 });
 
 var server = app.listen(8000, function () {
